@@ -1,0 +1,30 @@
+@import "@/styles/enums.scss";
+
+.wrapper {
+  width: 250px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &_number {
+    font-size: 16rem;
+    font-weight: bold;
+    position: absolute;
+    color: black;
+    -webkit-text-stroke: 4px map-get($map: $schema, $key: textColorSecondary);
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+  }
+
+  &_image {
+    z-index: 2;
+    width: 140px;
+    height: 100%;
+    background-color: gray;
+    margin-left: 7rem;
+    border-radius: 4px;
+  }
+}

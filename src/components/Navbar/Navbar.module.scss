@@ -1,0 +1,45 @@
+@import "@/styles/enums.scss";
+
+.navbar {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70;
+  background-color: transparent;
+  width: 100vw;
+  z-index: 99 !important;
+  padding: 4px calc(map-get($map: $schema, $key: spacing) * 3);
+
+  &_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: calc(map-get($map: $schema, $key: spacing) * 3);
+
+    &_menu ul {
+      display: flex;
+      flex-direction: row;
+      gap: calc(map-get($map: $schema, $key: spacing) * 1.5);
+      list-style: none;
+    }
+
+    &_menu li {
+      font-size: 14px;
+      color: map-get($map: $schema, $key: textColorPrimary);
+      transition: all 0.3s ease-in-out;
+    }
+
+    &_menu li:hover {
+      color: map-get($map: $schema, $key: textColorSecondary);
+    }
+  }
+
+  &_action {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: calc(map-get($map: $schema, $key: spacing));
+  }
+}

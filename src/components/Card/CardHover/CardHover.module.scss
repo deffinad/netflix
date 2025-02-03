@@ -1,0 +1,79 @@
+@import "@/styles/enums.scss";
+
+.wrapper {
+  z-index: 99 !important;
+  background-color: map-get($map: $schema, $key: secondary);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: map-get($map: $schema, $key: textColorPrimary);
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  overflow: hidden;
+  position: absolute;
+  width: 270px;
+
+  &_thumbnail {
+    min-height: 150px;
+    background-color: gray;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &_description {
+    display: flex;
+    background-color: map-get($map: $schema, $key: secondary);
+    flex-direction: column;
+    gap: calc(map-get($map: $schema, $key: spacing) / 1.5);
+    padding: map-get($map: $schema, $key: spacing);
+    z-index: 999 !important;
+
+    &_action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: map-get($map: $schema, $key: spacing);
+      flex-direction: row;
+
+      &_content1 {
+        display: flex;
+        align-items: center;
+        gap: calc(map-get($map: $schema, $key: spacing) / 2);
+        flex-direction: row;
+      }
+    }
+
+    &_container2 {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: calc(map-get($map: $schema, $key: spacing) / 2);
+      font-size: 14px;
+      color: map-get($map: $schema, $key: textColorSecondary);
+
+      &_umur {
+        border: 1px solid map-get($map: $schema, $key: textColorSecondary);
+        padding: 0 4px;
+      }
+
+      &_durasi {
+        font-weight: 500;
+      }
+
+      &_kualitas {
+        font-size: 8px;
+        border: 1px solid map-get($map: $schema, $key: textColorSecondary);
+        padding: 0 4px;
+      }
+    }
+
+    &_container3 {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: calc(map-get($map: $schema, $key: spacing) / 2);
+      font-size: 14px;
+    }
+  }
+}
