@@ -1,4 +1,4 @@
-@import '@/styles/enums.scss';
+@use "@/styles/enums" as *;
 
 .wrapper {
 	width: 100%;
@@ -12,12 +12,7 @@
 		font-weight: bold;
 		position: absolute;
 		color: black;
-		-webkit-text-stroke: 4px
-			map-get(
-				$map: $schema,
-				$key:
-					textColorSecondary
-			);
+		-webkit-text-stroke: 4px $textColorSecondary;
 		left: 0;
 		top: 50%;
 		transform: translateY(-50%);

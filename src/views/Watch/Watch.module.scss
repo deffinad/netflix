@@ -1,4 +1,4 @@
-@import "@/styles/enums.scss";
+@use "@/styles/enums" as *;
 
 .wrapper{
     width: 100vw;

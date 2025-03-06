@@ -8,7 +8,6 @@ import { AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import VideoJS from '@/components/VideoJS'
-import CardHover from '@/components/Card/CardHover'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
