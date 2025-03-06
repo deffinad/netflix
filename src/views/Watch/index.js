@@ -3,7 +3,7 @@ import styles from './Watch.module.scss'
 import { useRouter } from 'next/router';
 import VideoJS from '@/components/VideoJS';
 
-const WatchView = () => {
+const WatchView = ({ movie }) => {
     const router = useRouter()
     const playerRef = useRef(null);
 
@@ -13,7 +13,7 @@ const WatchView = () => {
         responsive: false,
         fluid: true,
         sources: [{
-            src: 'https://www.w3schools.com/html/mov_bbb.mp4',
+            src: movie.video,
             type: 'video/mp4'
         }]
     };

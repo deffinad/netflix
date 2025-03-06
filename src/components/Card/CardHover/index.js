@@ -46,22 +46,43 @@ const CardHover = ({ item, type }) => {
         return () => clearTimeout(timer);
     }, []);
 
+    const handleRenderGenre = (genre) => {
+        let tmpGenre = genre.split(',')
+        return (
+            tmpGenre.map((item, index) => (
+                <>
+                    <span>{item}</span>
+                    {index < tmpGenre.length - 1 && (
+                        <span>&#9679;</span>
+                    )}
+                </>
+            ))
+        )
+    }
+
     return (
         <motion.div
-            initial={{ scale: type === 'number' ? 0 : 1 }}
+            initial={{ scale: type === 'popular' ? 0 : 1 }}
             animate={{ scale: 1.3 }}
             exit={{ scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            layoutId={`card-modal-${item}`}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            layoutId={`card-modal-${item.id}`}
             className={styles.wrapper}
         >
             <div
                 className={styles.wrapper_thumbnail}
+                style={{ backgroundImage: `url(/images/${type}/${item.thumbnail})` }}
                 onClick={() => {
-                    router.push('/watch')
+                    if (item.video !== '') {
+                        router.push('/watch')
+                    }
                 }}
             >
-                {/* <VideoJS options={videoJsOptions} onReady={handlePlayerReady} /> */}
+                {item.video === '' && (
+                    <div className={styles.wrapper_thumbnail_comingSoon}>
+                        <span>Coming Soon</span>
+                    </div>
+                )}
             </div>
 
             <motion.div
@@ -73,7 +94,9 @@ const CardHover = ({ item, type }) => {
                         <div
                             className='action play'
                             onClick={() => {
-                                router.push('/watch')
+                                if (item.video !== '') {
+                                    router.push('/watch')
+                                }
                             }}
                         >
                             <PlayArrow />
@@ -94,7 +117,7 @@ const CardHover = ({ item, type }) => {
                                 e.stopPropagation()
                                 router.push({
                                     pathname: '/browse',
-                                    query: { jbv: item },
+                                    query: { jbv: item.id },
                                 }, undefined, { scroll: false })
                             }}
                             className='action detail'
@@ -105,17 +128,13 @@ const CardHover = ({ item, type }) => {
                 </div>
 
                 <div className={styles.wrapper_description_container2}>
-                    <span className={styles.wrapper_description_container2_umur}>13+</span>
-                    <span className={styles.wrapper_description_container2_durasi}>Kekerasan</span>
+                    <span className={styles.wrapper_description_container2_umur}>{item.age_rating}</span>
+                    <span className={styles.wrapper_description_container2_durasi}>{item.title}</span>
                     <span className={styles.wrapper_description_container2_kualitas}>HD</span>
                 </div>
 
                 <div className={styles.wrapper_description_container3}>
-                    <span>Romantis</span>
-                    <span>&#9679;</span>
-                    <span>Drama</span>
-                    <span>&#9679;</span>
-                    <span>Cinta</span>
+                    {handleRenderGenre(item.genre)}
                 </div>
             </motion.div>
         </motion.div>
