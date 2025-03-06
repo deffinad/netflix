@@ -23,8 +23,8 @@
     position: relative;
     cursor: pointer;
     display: flex;
-    align-items: end;
-    justify-content: end;
+    align-items: flex-end;
+    justify-content: flex-end;
 
     &_comingSoon {
       font-size: 10px;

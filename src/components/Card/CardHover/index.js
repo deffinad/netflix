@@ -74,7 +74,7 @@ const CardHover = ({ item, type }) => {
                 style={{ backgroundImage: `url(/images/${type}/${item.thumbnail})` }}
                 onClick={() => {
                     if (item.video !== '') {
-                        router.push('/watch')
+                        router.push(`/watch/${item?.id}`)
                     }
                 }}
             >
@@ -95,7 +95,7 @@ const CardHover = ({ item, type }) => {
                             className='action play'
                             onClick={() => {
                                 if (item.video !== '') {
-                                    router.push('/watch')
+                                    router.push(`/watch/${item.id}`)
                                 }
                             }}
                         >
