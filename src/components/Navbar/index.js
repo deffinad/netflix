@@ -75,7 +75,11 @@ const Navbar = ({ iVisible = false }) => {
                             <Search />
                             <NotificationsOutlined />
                             <div className={styles.navbar_action_profile}>
-                                <Image alt='profile' src={profile?.image} width={35} height={35} />
+                                {
+                                    profile !== null && (
+                                        <Image alt='profile' src={profile?.image} width={35} height={35} />
+                                    )
+                                }
                             </div>
                         </div>
                     </motion.nav>

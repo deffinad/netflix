@@ -6,6 +6,7 @@ import VideoJS from '../VideoJS'
 import { Close } from '@mui/icons-material'
 import { useRouter } from 'next/router'
 import { BASE_URL } from '@/contants/AppEnums'
+import Image from 'next/image'
 
 const Modal = ({ open, handleCloseModal, item }) => {
     const playerRef = React.useRef(null);
@@ -92,7 +93,9 @@ const Modal = ({ open, handleCloseModal, item }) => {
 
                 <div
                     className={styles.wrapper_content_header}
-                    style={{ backgroundImage: `url(/images/${handleGetFolderImage(detailMovie?.thumbnail)}/${detailMovie?.thumbnail})` }}
+                    style={{
+                        minHeight: detailMovie?.video !== '' ? 300 : 450
+                    }}
                     onClick={() => {
                         if (detailMovie?.video !== '') {
                             router.push(`/watch/${detailMovie?.id}`)
@@ -100,15 +103,25 @@ const Modal = ({ open, handleCloseModal, item }) => {
                     }}
                 >
                     {
-                        detailMovie?.video !== '' && (
-                            <VideoJS
-                                options={{
-                                    ...videoJsOptions, sources: [{
-                                        src: detailMovie?.trailer,
-                                        type: 'video/mp4'
-                                    }]
-                                }}
-                                onReady={handlePlayerReady}
+                        detailMovie !== null && detailMovie?.video !== '' ? (
+                            <div className={styles.wrapper_content_header_video}>
+                                <VideoJS
+                                    options={{
+                                        ...videoJsOptions, sources: [{
+                                            src: detailMovie?.trailer,
+                                            type: 'video/mp4'
+                                        }]
+                                    }}
+                                    onReady={handlePlayerReady}
+                                />
+                            </div>
+                        ) : (
+                            <Image
+                                src={`/images/${handleGetFolderImage(detailMovie?.thumbnail)}/${detailMovie?.thumbnail}`}
+                                alt={detailMovie?.title}
+                                fill
+                                priority
+                                className={styles.wrapper_content_header_image}
                             />
                         )
                     }

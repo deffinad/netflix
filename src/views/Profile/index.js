@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Profile.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,13 +6,17 @@ import useProfile from '@/hooks/profile'
 import { useRouter } from 'next/router'
 
 const ProfileView = ({ data }) => {
-  const { profile, setValueProfile } = useProfile()
+  const { profile, setValueProfile, removeProfile } = useProfile()
   const router = useRouter()
 
   const handleNavigate = (item) => {
     setValueProfile(item)
     router.push('/browse')
   }
+
+  useEffect(() => {
+    removeProfile()
+  }, [])
 
   return (
     <section className={styles.content}>

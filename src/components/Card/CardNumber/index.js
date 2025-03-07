@@ -6,7 +6,6 @@ import Image from 'next/image'
 
 const CardNumber = ({ key, index, item }) => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
-
     return (
         <motion.div
             key={key}
@@ -21,9 +20,14 @@ const CardNumber = ({ key, index, item }) => {
         >
             <span className={styles.wrapper_number}>{index}</span>
             <div
-                className={styles.wrapper_image}
-                style={{ backgroundImage: `url(/images/popular/${item.thumbnail})` }}
+                className={styles.wrapper_thumbnail}
             >
+                <Image
+                    src={`/images/popular/${item.thumbnail}`}
+                    alt={item.title}
+                    fill
+                    className={styles.wrapper_thumbnail_image}
+                />
             </div>
 
             <AnimatePresence>

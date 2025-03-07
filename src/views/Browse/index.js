@@ -127,16 +127,16 @@ const BrowseView = ({ movies }) => {
     };
 
     useEffect(() => {
-        if (jbv !== null) {
-            if (playerRef.current) {
-                playerRef.current.pause();
-            }
-        } else {
-            if (playerRef.current) {
-                playerRef.current.play();
-            }
+        if (playerRef.current) {
+            playerRef.current.ready(() => {
+                if (jbv !== null) {
+                    playerRef.current.pause();
+                } else {
+                    playerRef.current.play();
+                }
+            });
         }
-    }, [jbv])
+    }, [jbv]);
 
     return (
         <>

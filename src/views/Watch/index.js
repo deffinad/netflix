@@ -10,7 +10,7 @@ const WatchView = ({ movie }) => {
     const videoJsOptions = {
         autoplay: true,
         controls: true,
-        responsive: false,
+        responsive: true,
         fluid: true,
         sources: [{
             src: movie.video,
@@ -36,7 +36,9 @@ const WatchView = ({ movie }) => {
     };
 
     return (
-        <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+        <div className={styles.wrapper}>
+            <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+        </div>
     )
 }
 

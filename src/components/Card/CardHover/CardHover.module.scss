@@ -1,93 +1,101 @@
-@use "@/styles/enums" as *;
+@use '@/styles/enums' as *;
 
 .wrapper {
-  z-index: 999 !important;
-  background-color: $secondary;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  color: $textColorPrimary;
-  border-radius: 4px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-  overflow: hidden;
-  position: absolute;
-  width: 270px;
+	z-index: 999 !important;
+	background-color: $secondary;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	color: $textColorPrimary;
+	border-radius: 4px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	border-radius: 4px;
+	overflow: hidden;
+	position: absolute;
+	width: 270px;
 
-  &_thumbnail {
-    min-height: 150px;
-    background-color: gray;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+	&_thumbnail {
+		min-height: 150px;
+		background-color: gray;
+		position: relative;
+		cursor: pointer;
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
 
-    &_comingSoon {
-      font-size: 10px;
-      border-top-left-radius: 4px;
-      padding: calc($spacing / 3);
-      background-color: $primary;
-    }
-  }
+		&_image {
+			object-fit: cover;
+		}
 
-  &_description {
-    display: flex;
-    background-color: $secondary;
-    flex-direction: column;
-    gap: calc($spacing / 1.5);
-    padding: $spacing;
-    z-index: 999 !important;
+		&_comingSoon {
+			font-size: 10px;
+			border-top-left-radius: 4px;
+			padding: calc($spacing / 3);
+			background-color: $primary;
+		}
+	}
 
-    &_action {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: $spacing;
-      flex-direction: row;
+	&_description {
+		display: flex;
+		background-color: $secondary;
+		flex-direction: column;
+		gap: calc($spacing / 1.5);
+		padding: $spacing;
+		z-index: 999 !important;
 
-      &_content1 {
-        display: flex;
-        align-items: center;
-        gap: calc($spacing / 2);
-        flex-direction: row;
-      }
-    }
+		&_action {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: $spacing;
+			flex-direction: row;
 
-    &_container2 {
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      gap: calc($spacing / 2);
-      font-size: 14px;
-      color: $textColorSecondary;
+			&_content1 {
+				display: flex;
+				align-items: center;
+				gap: calc(
+					$spacing /
+						2
+				);
+				flex-direction: row;
+			}
+		}
 
-      &_umur {
-        border: 1px solid $textColorSecondary;
-        padding: 0 4px;
-      }
+		&_container2 {
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+			gap: calc($spacing / 2);
+			font-size: 14px;
+			color: $textColorSecondary;
 
-      &_durasi {
-        text-align: start;
-        font-weight: 500;
-      }
+			&_umur {
+				border: 1px
+					solid
+					$textColorSecondary;
+				padding: 0 4px;
+			}
 
-      &_kualitas {
-        font-size: 8px;
-        border: 1px solid $textColorSecondary;
-        padding: 0 4px;
-      }
-    }
+			&_durasi {
+				text-align: start;
+				font-weight: 500;
+			}
 
-    &_container3 {
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      gap: calc($spacing / 2);
-      font-size: 14px;
-    }
-  }
+			&_kualitas {
+				font-size: 8px;
+				border: 1px
+					solid
+					$textColorSecondary;
+				padding: 0 4px;
+			}
+		}
+
+		&_container3 {
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+			gap: calc($spacing / 2);
+			font-size: 14px;
+		}
+	}
 }
