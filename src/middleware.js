@@ -16,7 +16,7 @@ export function middleware(request) {
 
     // If device is mobile or tablet, redirect to "/mobile"
     if (isMobile || isTablet) {
-        return NextResponse.redirect(new URL("/mobile", request.url));
+        return NextResponse.redirect(new URL("/423", request.url));
     }
 
     // Otherwise, continue with the request
