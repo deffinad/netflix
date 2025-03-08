@@ -26,7 +26,7 @@ const ProfileView = ({ data }) => {
         {(data && data.map((item, index) => (
           <div onClick={() => handleNavigate(item)} key={index} className={styles.content_profile_item}>
             <div className={styles.content_profile_item_img}>
-              <Image src={item.image} alt={item.title} width={150} height={150} />
+              <Image src={item.image} alt={item.title} fill priority/>
             </div>
             <p className={styles.content_profile_item_title}>{item.title}</p>
           </div>

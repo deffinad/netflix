@@ -1,7 +1,9 @@
 @use '@/styles/enums' as *;
 
 .wrapper {
-	width: 100vw;
-	height: 100vh;
-	position: relative;
+	width: 85%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
 }

@@ -1,9 +1,14 @@
+@font-face {
+	font-family: 'NetflixSans';
+	src: url('/fonts/NetflixSans-Regular.otf') format('opentype');
+}
+
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
   background-color: rgb(26, 26, 26);
-  font-family: 'Arial';
+  font-family: 'NetflixSans';
 }
 
 * {

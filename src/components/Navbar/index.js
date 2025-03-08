@@ -6,9 +6,31 @@ import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { NotificationsOutlined, Search } from '@mui/icons-material'
 
+const dataNotif = [
+    {
+        id: 1,
+        message: 'Happy birthday sayang!',
+        from: 'Deffin',
+        date: '15 Maret 2025'
+    },
+    {
+        id: 2,
+        message: 'Cepet-cepet nikah sama orang pilihan sarah',
+        from: 'Farsha',
+        date: '15 Maret 2025'
+    },
+    {
+        id: 3,
+        message: 'Semoga cepet halal sama deffin',
+        from: 'Vieska',
+        date: '15 Maret 2025'
+    },
+]
+
 const Navbar = ({ iVisible = false }) => {
     const { profile } = useProfile()
     const [isScrolled, setIsScrolled] = useState(false)
+    const [isOpenNotification, setIsOpenNotification] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -32,7 +54,7 @@ const Navbar = ({ iVisible = false }) => {
                     >
                         <div className={styles.navbar_header}>
                             <div className={styles.navbar_header_img}>
-                                <Image src={'/images/Netflix_Logo.png'} alt='Netflix Logo' width={120} height={60} />
+                                <Image src={'/images/Netflix_Logo.png'} alt='Netflix Logo' width={100} height={30} />
                             </div>
 
                             <div className={styles.navbar_header_menu}>
@@ -73,7 +95,40 @@ const Navbar = ({ iVisible = false }) => {
 
                         <div className={styles.navbar_action}>
                             <Search />
-                            <NotificationsOutlined />
+
+                            <div
+                                className={styles.navbar_action_notif}
+                                onMouseEnter={() => setIsOpenNotification(true)}
+                                onMouseLeave={() => setIsOpenNotification(false)}
+                            >
+                                <div className={styles.navbar_action_notif_badge}></div>
+
+                                <NotificationsOutlined />
+
+                                {isOpenNotification && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        className={styles.navbar_action_notif_dropdown}
+                                    >
+                                        {dataNotif.map((item, index) => (
+                                            <div key={item.id}>
+                                                <div className={styles.navbar_action_notif_dropdown_item}>
+                                                    <span className={styles.navbar_action_notif_dropdown_item_message}>{item.message}</span>
+                                                    <span className={styles.navbar_action_notif_dropdown_item_fromDate}>{item.from} &#9679; {item.date}</span>
+                                                </div>
+
+                                                {index < dataNotif.length - 1 && (
+                                                    <div className={styles.navbar_action_notif_dropdown_divider}></div>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </div>
+
                             <div className={styles.navbar_action_profile}>
                                 {
                                     profile !== null && (

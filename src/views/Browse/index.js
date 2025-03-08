@@ -15,12 +15,14 @@ import { InfoOutlined, NavigateBefore, NavigateNext, PlayArrow } from '@mui/icon
 import { motion } from 'framer-motion'
 import { BASE_URL } from '@/contants/AppEnums'
 import Footer from '@/components/Footer'
+import Image from 'next/image'
 
 const BrowseView = ({ movies }) => {
     const params = useSearchParams()
     const jbv = params.get('jbv')
     const router = useRouter()
     const playerRef = React.useRef(null);
+    const [playerReady, setPlayerReady] = useState(false)
 
     // Custom Prev Arrow
     const PrevArrow = ({ onClick }) => (
@@ -102,6 +104,7 @@ const BrowseView = ({ movies }) => {
         autoplay: true,
         controls: false,
         responsive: true,
+        loop: false,
         fluid: true,
         sources: [{
             src: movies.home.trailer,
@@ -122,6 +125,7 @@ const BrowseView = ({ movies }) => {
         });
 
         player.on("play", () => {
+            setPlayerReady(true)
             console.log("Video started!");
         });
     };
@@ -149,6 +153,9 @@ const BrowseView = ({ movies }) => {
                         layoutId={`card-modal-${movies.home.id}`}
                     >
                         <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+                        {!playerReady && (
+                            <Image alt='thumbnail' src={`/images/thumbnail/${movies.home.thumbnail}`} fill priority style={{ objectFit: 'cover' }} />
+                        )}
                     </motion.div>
 
                     <div className={styles.content_header_wrapper}>

@@ -12,11 +12,13 @@ const Modal = ({ open, handleCloseModal, item }) => {
     const playerRef = React.useRef(null);
     const router = useRouter()
     const [detailMovie, setDetailMovie] = useState(null)
+    const [playerReady, setPlayerReady] = useState(false)
 
     const videoJsOptions = {
         autoplay: true,
         controls: false,
         responsive: true,
+        loop: false,
         fluid: true,
         // sources: [{
         //     src: 'https://www.w3schools.com/html/mov_bbb.mp4',
@@ -37,6 +39,7 @@ const Modal = ({ open, handleCloseModal, item }) => {
         });
 
         player.on("play", () => {
+            setPlayerReady(true)
             console.log("Video started!");
         });
     };
@@ -104,17 +107,23 @@ const Modal = ({ open, handleCloseModal, item }) => {
                 >
                     {
                         detailMovie !== null && detailMovie?.video !== '' ? (
-                            <div className={styles.wrapper_content_header_video}>
-                                <VideoJS
-                                    options={{
-                                        ...videoJsOptions, sources: [{
-                                            src: detailMovie?.trailer,
-                                            type: 'video/mp4'
-                                        }]
-                                    }}
-                                    onReady={handlePlayerReady}
-                                />
-                            </div>
+                            <>
+                                <div className={styles.wrapper_content_header_video}>
+                                    <VideoJS
+                                        options={{
+                                            ...videoJsOptions, sources: [{
+                                                src: detailMovie?.trailer,
+                                                type: 'video/mp4'
+                                            }]
+                                        }}
+                                        onReady={handlePlayerReady}
+                                    />
+                                </div>
+
+                                {!playerReady && (
+                                    <Image alt='thumbnail' src={`/images/thumbnail/${detailMovie?.thumbnail}`} fill priority style={{ objectFit: 'cover' }} />
+                                )}
+                            </>
                         ) : (
                             <Image
                                 src={`/images/${handleGetFolderImage(detailMovie?.thumbnail)}/${detailMovie?.thumbnail}`}

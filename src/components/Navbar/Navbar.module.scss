@@ -1,45 +1,138 @@
-@use "@/styles/enums" as *;
+@use '@/styles/enums' as *;
 
 .navbar {
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 70;
-  background-color: transparent;
-  width: 100vw;
-  z-index: 99 !important;
-  padding: 4px calc($spacing * 3);
+	position: fixed;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 70;
+	background-color: transparent;
+	width: 100vw;
+	z-index: 99 !important;
+	padding: calc($spacing - 4px) calc($spacing * 3);
 
-  &_header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: calc($spacing * 3);
+	&_header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: calc($spacing * 3);
 
-    &_menu ul {
-      display: flex;
-      flex-direction: row;
-      gap: calc($spacing * 1.5);
-      list-style: none;
-    }
+		&_menu ul {
+			display: flex;
+			flex-direction: row;
+			gap: calc($spacing * 1.5);
+			list-style: none;
+		}
 
-    &_menu li {
-      font-size: 14px;
-      color: $textColorPrimary;
-      transition: all 0.3s ease-in-out;
-    }
+		&_menu li {
+			font-size: 14px;
+			color: $textColorPrimary;
+			transition: all 0.3s ease-in-out;
+		}
 
-    &_menu li:hover {
-      color: $textColorSecondary;
-    }
-  }
+		&_menu li:hover {
+			color: $textColorSecondary;
+		}
+	}
 
-  &_action {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    gap: calc($spacing);
-  }
+	&_action {
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		gap: calc($spacing);
+
+		&_notif {
+			position: relative;
+			cursor: pointer;
+
+			&_badge {
+        position: absolute;
+        border-radius: 100%;
+        width: 8px;
+        height: 8px;
+        background-color: red;
+        top: 0;
+        right: 4px;
+			}
+
+			&_dropdown {
+				position: absolute;
+				top: 40px;
+				width: 300px !important;
+				right: 0;
+				width: 200px;
+				background: rgba(
+					26,
+					26,
+					26,
+					0.733
+				);
+				border-radius: 2px;
+				box-shadow: rgba(
+						0,
+						0,
+						0,
+						0.24
+					)
+					0px
+					3px
+					8px;
+				color: $textColorSecondary;
+				border-top: 1px
+					solid
+					white;
+
+				&::before {
+					content: '';
+					position: absolute;
+					top: -10px;
+					right: 0;
+					width: 0;
+					height: 0;
+					border-left: 10px
+						solid
+						transparent;
+					border-right: 10px
+						solid
+						transparent;
+					border-bottom: 10px
+						solid
+						white;
+				}
+
+				&_divider {
+					width: 100%;
+					height: 1px;
+					background-color: $textColorSecondary;
+				}
+
+				&_item {
+					padding: calc(
+							$spacing /
+								2
+						)
+						calc(
+							$spacing
+						);
+					display: flex;
+					flex-direction: column;
+					gap: 2px;
+
+					&_message {
+						font-size: 15px;
+						color: rgb(
+							206,
+							206,
+							206
+						);
+					}
+
+					&_fromDate {
+						font-size: 12px;
+					}
+				}
+			}
+		}
+	}
 }
