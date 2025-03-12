@@ -132,6 +132,61 @@
 				}
 			}
 
+			&_lainnya {
+				display: flex;
+				flex-direction: column;
+				gap: calc($spacing);
+
+				&_content {
+					display: grid;
+					grid-template-columns: repeat(3, 1fr);
+					gap: $spacing;
+
+					&_item {
+						border-radius: 8px;
+						display: flex;
+						flex-direction: column;
+						border-radius: 4px;
+						overflow: hidden;
+						background-color: #2f2f2f;
+						cursor: pointer;
+
+						&_container {
+							padding: $spacing;
+							display: flex;
+							flex-direction: column;
+							gap: $spacing;
+
+							&_detail{
+								display: flex;
+								flex-direction: row;
+								gap: calc($spacing / 2 );
+
+								&_ageRating {
+									border: 1px solid white;
+									padding: 0 4px;
+								}
+
+								&_year {
+									color: #c7c7c7;
+								}
+							}
+
+							&_desc{
+								font-size: 14px;
+								line-height: 1.5;
+								color: #c7c7c7;
+							}
+						}
+
+						&_thumbnail {
+							height: 150px;
+							position: relative;
+						}
+					}
+				}
+			}
+
 			&_tentang {
 				display: flex;
 				flex-direction: column;

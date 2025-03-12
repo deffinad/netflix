@@ -1,13 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import styles from './Watch.module.scss'
-import { useRouter } from 'next/router';
 import VideoJS from '@/components/VideoJS';
 import { BASE_URL } from '@/contants/AppEnums';
 
 const WatchView = ({ movie }) => {
-    const router = useRouter()
     const playerRef = useRef(null);
-    const [video, setVideo] = useState(null)
 
     const videoJsOptions = {
         autoplay: true,
@@ -37,29 +34,17 @@ const WatchView = ({ movie }) => {
         });
     };
 
-    useEffect(() => {
-        setVideo(null)
-        fetch(BASE_URL + 'api/dropbox')
-            .then(response => response.blob())
-            .then(blob => {
-                const url = URL.createObjectURL(blob);
-                setVideo(url)
-            });
-    }, [movie])
-
     return (
         <div className={styles.wrapper}>
-            {video !== null && (
-                <VideoJS
-                    options={{
-                        ...videoJsOptions, sources: [{
-                            src: movie.video,
-                            type: 'video/mp4'
-                        }]
-                    }}
-                    onReady={handlePlayerReady}
-                />
-            )}
+            <VideoJS
+                options={{
+                    ...videoJsOptions, sources: [{
+                        src: movie.video,
+                        type: 'video/mp4'
+                    }]
+                }}
+                onReady={handlePlayerReady}
+            />
         </div>
     )
 }

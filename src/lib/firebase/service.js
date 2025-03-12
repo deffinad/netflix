@@ -40,12 +40,32 @@ export const retrieveHome = async () => {
     return data
 }
 
-export const retrieveDataById = async (collectionName, id) => {
-    const snapshot = await getDoc(doc(firestore, collectionName, id))
-    const data = {
-        id: snapshot.id,
-        ...snapshot.data()
+// Retrieve parent document and its subcollection
+export const retrieveDataById = async (collectionName, docId, subcollectionName = 'other') => {
+    const documentRef = doc(firestore, collectionName, docId);
+    const snapshot = await getDoc(documentRef);
+
+    if (!snapshot.exists()) {
+        throw new Error("Document not found");
     }
 
-    return data
-}
+    // Get subcollection documents
+    const subcollectionDocs = await getSubcollectionDocs(collectionName, docId, subcollectionName);
+
+    return {
+        id: snapshot.id,
+        ...snapshot.data(),
+        [subcollectionName]: subcollectionDocs,
+    };
+};
+
+// Helper to fetch all documents from a subcollection
+const getSubcollectionDocs = async (parentCollection, parentId, subcollectionName) => {
+    const subcollectionRef = collection(firestore, `${parentCollection}/${parentId}/${subcollectionName}`);
+    const subcollectionSnapshot = await getDocs(subcollectionRef);
+
+    return subcollectionSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+};
