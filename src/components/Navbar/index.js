@@ -25,6 +25,18 @@ const dataNotif = [
         from: 'Vieska',
         date: '15 Maret 2025'
     },
+    {
+        id: 4,
+        message: 'Jangan bikin gue emosi mulu, jangan jadi tua yang menyebalkan',
+        from: 'Salma',
+        date: '15 Maret 2025'
+    },
+    {
+        id: 5,
+        message: 'Tolong, pinternya agak ditambah',
+        from: 'Arlez',
+        date: '15 Maret 2025'
+    },
 ]
 
 const Navbar = ({ iVisible = false }) => {
